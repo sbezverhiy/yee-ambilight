@@ -54,14 +54,19 @@ public class LightService {
 
     public  synchronized boolean isAmbilightOn()
     {
-        return lightingThread!=null;
+        return lightingThread!=null && lightingThread.isAlive();
     }
 
     public synchronized void startAmbilight(){
-        if(lightingThread!=null) return;
+        if(lightingThread!=null && lightingThread.isAlive()) return;
         Runnable r = () -> {
+            log.info("Camera service Startting");
+            if (!cameraService.startRec(Thread.currentThread())){
+                log.warn("Camera service didnt start,break execution");
+                return;
+            }
+
             log.info("Ambilight Startting");
-            cameraService.startRec(Thread.currentThread());
             Socket socket=null;
             OutputStream socketOutputStream=null;
             BufferedReader socketIn=null;
