@@ -22,7 +22,7 @@
     <managed-bean>
         <managed-bean-name>lightServiceBean</managed-bean-name>
         <managed-bean-class>com.github.sbezverhiy.yeeambilight.bean.LightServiceBean</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
         <managed-property>
             <property-name>lightService</property-name>
             <value>#{lightService}</value>

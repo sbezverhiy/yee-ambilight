@@ -53,9 +53,10 @@ public class CameraService {
 
     private int colorDiffThreashold=150;
 
-    public void startRec(Thread interruptedThread){
-        if(recThread!=null) return;
+    public boolean startRec(Thread interruptedThread){
+        if(recThread!=null) return false;
         webcam = Webcam.getDefault();
+        if(webcam == null) return false;
         webcam.setViewSize(new Dimension(width, height));
         webcam.open();
         Runnable r = () -> {
@@ -82,6 +83,7 @@ public class CameraService {
         };
         recThread= new Thread(r);
         recThread.start();
+        return true;
 
     }
 

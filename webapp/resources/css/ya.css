@@ -1,0 +1,10 @@
+.buttonOnCss {
+    width: 64px;
+    height: 64px;
+    background-image: url(../On.png)
+}
+.buttonOffCss {
+    width: 64px;
+    height: 64px;
+    background-image: url(../Off.png)
+}

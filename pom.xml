@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <primefaces-version>5.2.RC1</primefaces-version>
+        <primefaces-version>6.1</primefaces-version>
     </properties>
     <build>
         <plugins>
