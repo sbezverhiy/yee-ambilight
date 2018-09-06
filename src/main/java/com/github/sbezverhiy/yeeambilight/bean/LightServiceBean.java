@@ -1,6 +1,7 @@
 package com.github.sbezverhiy.yeeambilight.bean;
 
 import com.github.sbezverhiy.yeeambilight.LightService;
+import com.github.sbezverhiy.yeeambilight.LightServiceImpl;
 
 import javax.faces.event.ActionEvent;
 
