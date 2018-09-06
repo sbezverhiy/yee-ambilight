@@ -11,7 +11,7 @@
 
     <managed-bean>
         <managed-bean-name>lightService</managed-bean-name>
-        <managed-bean-class>com.github.sbezverhiy.yeeambilight.LightService</managed-bean-class>
+        <managed-bean-class>com.github.sbezverhiy.yeeambilight.LightServiceImpl</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
         <managed-property>
             <property-name>cameraService</property-name>

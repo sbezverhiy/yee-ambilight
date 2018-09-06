@@ -3,10 +3,10 @@ package com.github.sbezverhiy.yeeambilight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LightServiceMock {
+public class LightServiceMock implements  LightService{
 
     Thread lightingThread=null;
-    Logger log = LoggerFactory.getLogger(LightService.class);
+    Logger log = LoggerFactory.getLogger(LightServiceImpl.class);
     public  synchronized boolean isAmbilightOn()
     {
         return lightingThread!=null;
