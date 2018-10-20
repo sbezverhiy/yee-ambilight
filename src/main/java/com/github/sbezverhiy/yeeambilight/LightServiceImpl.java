@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class LightServiceImpl implements LightService {
 
@@ -114,12 +115,26 @@ public class LightServiceImpl implements LightService {
                     }
                         
                     previousColor = currentColor;
-                    socketOutputStream.write(getCommandForChangeColor(currentColor).getBytes());
-                    socketOutputStream.flush();
-                    String serverResponse = socketIn.readLine();
-                    log.debug("led answer"+ serverResponse);
-
-
+                    try {
+                        socketOutputStream.write(getCommandForChangeColor(currentColor).getBytes());
+                        socketOutputStream.flush();
+                        String serverResponse = socketIn.readLine();
+                        log.debug("led answer"+ serverResponse);
+                    }catch (SocketException se)
+                    {
+                        log.error("error in ambilight thread while write to socket",se);
+                        socketIn.close();
+                        socketOutputStream.close();
+                        socket.close();
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException i) {
+                        }
+                        log.info("try to reconnect to socket after waiting");
+                        socket = new Socket(ledHost, ledPort);
+                        socketOutputStream= socket.getOutputStream();
+                        socketIn=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    }
                 }
             }catch(Exception e)
             {
