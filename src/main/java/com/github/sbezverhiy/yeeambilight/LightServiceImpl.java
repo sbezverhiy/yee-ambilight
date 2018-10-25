@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Date;
 
 public class LightServiceImpl implements LightService {
 
@@ -126,9 +127,10 @@ public class LightServiceImpl implements LightService {
                         socketIn.close();
                         socketOutputStream.close();
                         socket.close();
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException i) {
+                        Date fromTime = new Date();
+                        while((new Date().getTime()- fromTime.getTime())<5000)
+                        {
+
                         }
                         log.info("try to reconnect to socket after waiting");
                         socket = new Socket(ledHost, ledPort);
